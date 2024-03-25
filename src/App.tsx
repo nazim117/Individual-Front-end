@@ -1,25 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import Header from "./Pages/Components/Header";
+import Footer from "./Pages/Components/Footer";
+import Home from "./Pages/HomePage";
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import MatchesPage from "./Pages/MatchesPage";
+import TicketsPage from "./Pages/TicketsPage";
+import UsersPage from "./Pages/UserPage";
+import {useEffect, useState} from "react";
+import axios from "axios";
 function App() {
+  const [users, setUsers] = useState([]);
+
+  const newUser = async () => {
+    axios.get("http://localhost:8080/users")
+        .then(res => {
+          console.log(res.data.users);
+          setUsers(res.data.users);
+        })
+        .catch((error)=>
+        {
+          console.log("Error occured: ", error)
+        })
+  }
+
+  useEffect(() => {
+    newUser();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+        <Router>
+          <Header/>
+          <Routes>
+            <Route path="/" element={<Home/>} />
+            <Route path="/matches" element={<MatchesPage/>} />
+            <Route path="/tickets" element={<TicketsPage/>} />
+            <Route path="/users" element={<UsersPage users={users}/>} />
+          </Routes>
+          <Footer/>
+        </Router>
+      </div>
   );
 }
 
