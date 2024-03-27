@@ -1,0 +1,21 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - ls
+    - pwd
+    - npm i
+    - npm run dev
+    - docker build -t individual-front-end .
+
+deploy:
+  stage: deploy
+  script:
+    - ls
+    - pwd
+    - docker stop individual-front-end-staging
+    - docker rm individual-front-end-staging
+    - docker run -d -p 8090:8080 --net=individual_db_staging --env spring_profiles_active=staging --name=individual-front-end-staging individual-front-end

@@ -17,24 +17,24 @@ function UsersPage(){
             })
     }
 
-    // const addUser = (id, email, fName) => {
-    //     const newUser = {
-    //         id: id,
-    //         email:email,
-    //         fName: fName
-    //     };
+    const addUser = (id, email, fName) => {
+        const newUser = {
+            id: id,
+            email:email,
+            fName: fName
+        };
 
-    //     // userAPI.createUser(newUser)
-    //     //     .then((res) =>{
-    //     //         console.log(res);
-    //     //         refreshUsers();
-    //     //     })
-    //     //     .catch((error) => {
-    //     //         console.error("Error fetching items ", error)
-    //     //     })
+        userAPI.createUser(newUser)
+            .then((res) =>{
+                console.log(res);
+                refreshUsers();
+            })
+            .catch((error) => {
+                console.error("Error fetching items ", error)
+            })
 
-    //     //setUsers([...users, newUser])
-    // }
+        setUsers([...users, newUser])
+    }
 
     useEffect(() => {
         refreshUsers();

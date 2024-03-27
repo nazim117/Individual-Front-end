@@ -7,6 +7,7 @@ import TicketsPage from './pages/TicketsPage';
 import Home from './pages/Home';
 import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css'
+
 function App() {
   return (
     <div className="App">
