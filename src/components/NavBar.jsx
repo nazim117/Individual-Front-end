@@ -1,6 +1,5 @@
-
-function Header(){
-    return (
+function NavBar(){
+    return(
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">Navbar</a>
@@ -26,4 +25,4 @@ function Header(){
     )
 }
 
-export default Header;
+export default NavBar;

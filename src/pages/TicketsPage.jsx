@@ -1,8 +1,9 @@
-import React from "react";
-
 function TicketsPage(){
     return(
-        <div>TicketsPage</div>
+        <div>
+            TicketsPage
+        </div>
     )
 }
+
 export default TicketsPage;
