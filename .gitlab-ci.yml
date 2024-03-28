@@ -18,4 +18,4 @@ deploy:
     - pwd
     - docker stop individual-front-end-staging
     - docker rm individual-front-end-staging
-    - docker run -d -p 3030:5173 --net=individual_db_staging --env spring_profiles_active=staging --name=individual-front-end-staging individual-front-end
+    - docker run -d -p 5173:5173 --net=individual_db_staging --env spring_profiles_active=staging --name=individual-front-end-staging individual-front-end
