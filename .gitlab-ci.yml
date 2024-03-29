@@ -8,7 +8,7 @@ build:
     - ls
     - pwd
     - npm i
-    - npm run build
+    - npm run
     - docker build -t individual-front-end .
 
 deploy:
