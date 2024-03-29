@@ -1,0 +1,11 @@
+Eden (dark blue)
+#103C5A
+
+Cold Turkey (dirty white)
+#D2C2C5
+
+Red Orange (red)
+#F93435
+
+Carnation (salmon)
+#F75656
