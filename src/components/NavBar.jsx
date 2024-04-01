@@ -1,25 +1,24 @@
 function NavBar(){
     return(
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <nav className="navbar navbar-expand-lg custom-style">
             <div className="container-fluid">
-                <a className="navbar-brand" href="/"><img src="../public/Logo.png"/></a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
+                <a className="navbar-brand" href="/"><img src="/Logo.png"/></a>
+                <div id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Home</a>
+                            <a className="nav-link custom-nav-link" href="/matches">MATCHES</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Features</a>
+                            <a className="nav-link custom-nav-link" href="#">GROUPS</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Pricing</a>
+                            <a className="nav-link custom-nav-link" href="#">TEAMS</a>
                         </li>
                     </ul>
                 </div>
+                    <div className='login'>
+                        <a href="/LoginPage"><i class="fa fa-user" aria-hidden="true"></i> LOGIN</a>
+                    </div>
             </div>
         </nav>
     )

@@ -2,6 +2,9 @@ Eden (dark blue)
 #103C5A
 
 Cold Turkey (dirty white)
+#C6D9E2
+
+Pink
 #D2C2C5
 
 Red Orange (red)

@@ -5,7 +5,6 @@ import MatchesPage from './pages/MatchesPage';
 import TicketsPage from './pages/TicketsPage';
 import Home from './pages/Home';
 import Footer from './components/Footer';
-import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (

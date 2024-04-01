@@ -42,6 +42,7 @@ function UsersPage(){
 
     return(
         <div>
+        <h1>UserPage</h1>
             <UserList users={users}/>
         </div>
     )
