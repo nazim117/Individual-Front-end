@@ -1,5 +1,5 @@
 import React from "react"
-import User from "./Match";
+import Match from "./Match";
 
 function MatchesList({matches}) {
 

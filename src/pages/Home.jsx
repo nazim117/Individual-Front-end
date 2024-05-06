@@ -1,7 +1,31 @@
+import React, {useEffect, useState} from "react";
+import matchAPI from "../API/matchAPI"
+import MatchList from "../components/MatchesList";
+
 function Home(){
+    const [matches, setMatches] = useState([]);
+
+    const refreshMatches = () => {
+        matchAPI.getTop3Matches()
+            .then((data) =>{
+                console.log(data);
+
+                const firstThreeMatches = data.slice(0, 3);
+                setMatches(firstThreeMatches);
+            })
+            .catch((error)=>
+            {
+                console.log("Error occured: ", error)
+            })
+    }
+
+    useEffect(() => {
+        refreshMatches();
+    }, []);
+
     return(
-        <div>
-            Home page
+        <div className="favoured-matches">
+            <MatchList matches={matches}/>
         </div>
     )
 }

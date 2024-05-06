@@ -21,10 +21,9 @@ function MatchesPage(){
         refreshMatches();
     }, []);
 
-
     return(
-        <div>
-            <h1>MatchesPage</h1>
+        <div className="matches-container">
+            <h1 className="matches-header">Matches</h1>
             <MatchList matches={matches}/>
         </div>
     )

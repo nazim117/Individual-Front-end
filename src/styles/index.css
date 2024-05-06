@@ -3,7 +3,9 @@
 @import url('App.css');
 @import url('footer.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css');
-
+@import url('match.css');
+@import url("matchPage.css");
+@import url("homePage.css");
 *{
   margin: 0;
   padding: 0;

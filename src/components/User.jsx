@@ -1,7 +1,24 @@
-function User({user}){
+
+function User({user, handleDeleteUser}){
+
+    const handleSubmit = (e) =>{
+        console.log("Delete user pressed pressed");
+        e.preventDefault();
+        
+        if(confirm("Are you sure you want to delete user?")){
+            handleDeleteUser(user.id);
+        }
+    }
     return (
         <div>
-            <li key={user.id}>{user.email} - {user.fname} {user.lname}</li>
+            <li key={user.id}>{user.email} - {user.fname} {user.lname} 
+            <form onSubmit={handleSubmit}>
+                <button type="submit">
+                    <i className="fa fa-user-minus" aria-hidden="true"></i>
+                </button>
+                
+            </form>
+            </li>
         </div>
     )
 }

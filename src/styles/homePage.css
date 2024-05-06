@@ -1,0 +1,9 @@
+.favoured-matches{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.favoured-matches > * {
+    margin: 10px;
+}
