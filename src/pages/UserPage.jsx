@@ -59,6 +59,7 @@ function UsersPage(){
 
         if(password !== confirmPassword){
             alert("Passwords do not match");
+            return;
         }
 
         let newUser = JSON.stringify({
@@ -69,16 +70,13 @@ function UsersPage(){
             role,
             password,
         });
-
-        console.log("New user ", newUser);
+ 
         userAPI.post(newUser)
             .then(() => { 
                 refreshUsers();
-                console.log(users);
             })
             .catch((error) => {
                 console.error("Error fetching items ", error)
-                console.log(error.response);
             })
 
     }
@@ -87,7 +85,6 @@ function UsersPage(){
         userAPI.delete(userId)
         .then(() => {
             refreshUsers();
-            console.log(users);
         })
     }
 

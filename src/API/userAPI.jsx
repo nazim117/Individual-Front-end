@@ -25,7 +25,6 @@ const userAPI = {
       };
       
       const response = await axios.request(config);
-      console.log(JSON.stringify(response.data));
       return response.data;
     }catch(error) {
       console.log(error);
@@ -44,9 +43,7 @@ const userAPI = {
         },
         data
       };
-      console.log("Config file: ", config);
       const response = await axios.request(config);
-      console.log(JSON.stringify(response.data));
       return response.data;
     }catch(error ){
       console.log(error);
@@ -64,7 +61,6 @@ const userAPI = {
       },
       data
     };
-    console.log("Edit config file: ", config);
     axios.request(config)
     .then((response) => {
       return response.data;

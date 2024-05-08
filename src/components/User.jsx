@@ -2,7 +2,6 @@
 function User({user, handleDeleteUser}){
 
     const handleSubmit = (e) =>{
-        console.log("Delete user pressed pressed");
         e.preventDefault();
         
         if(confirm("Are you sure you want to delete user?")){

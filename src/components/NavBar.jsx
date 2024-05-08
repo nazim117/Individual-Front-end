@@ -5,7 +5,6 @@ function NavBar({claims, handleLogout}){
     const navigate = useNavigate();
 
     const handleSubmit = (e) =>{
-        console.log("Logout pressed");
         e.preventDefault();
         
         if(confirm("Are you sure you want to logout?")){
@@ -32,7 +31,6 @@ function NavBar({claims, handleLogout}){
                 </div>
                     {claims?(
                         <div>
-                        {console.log("Navbar claims ", claims)}
                             <a href="/userProfile"><i className="fa fa-user" aria-hidden="true"></i> USER PROFILE</a>
                             <br></br>
                             <form onSubmit={handleSubmit}>

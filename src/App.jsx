@@ -10,6 +10,8 @@ import LoginPage from "./pages/LoginPage";
 import UserProfile from "./pages/UserProfile";
 import TokenManager from "./API/TokenManager";
 import loginAPI from "./API/loginAPI";
+import SingleMatchPage from "./pages/SingleMatchPage";
+import BuyTicket from "./pages/BuyTicket";
 
 function App() {
 
@@ -44,6 +46,8 @@ function App() {
           <Route path="/matches" element={<MatchesPage/>} />
           <Route path="/tickets" element={<TicketsPage/>} />
           <Route path="/users" element={<UserPage/>} />
+          <Route path="/matches/:matchId" element={<SingleMatchPage/>}/>
+          <Route path="/matches/:matchId/tickets" element={<BuyTicket/>}/>
           <Route path="/userProfile" element={<UserProfile claims = {claims}/>} />
           <Route path="/login" element={<LoginPage onLogin={handleLogin}/>} />
         </Routes>

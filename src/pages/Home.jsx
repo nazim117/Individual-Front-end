@@ -9,9 +9,7 @@ function Home(){
         matchAPI.getTop3Matches()
             .then((data) =>{
                 console.log(data);
-
-                const firstThreeMatches = data.slice(0, 3);
-                setMatches(firstThreeMatches);
+                setMatches(data);
             })
             .catch((error)=>
             {

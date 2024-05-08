@@ -8,7 +8,6 @@ function MatchesPage(){
     const refreshMatches = () => {
         matchAPI.getMatches()
             .then((data) =>{
-                console.log(data);
                 setMatches(data);
             })
             .catch((error)=>
@@ -23,7 +22,6 @@ function MatchesPage(){
 
     return(
         <div className="matches-container">
-            <h1 className="matches-header">Matches</h1>
             <MatchList matches={matches}/>
         </div>
     )

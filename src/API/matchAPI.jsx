@@ -11,7 +11,9 @@ const matchAPI = {
     .then(res => res.data.matches),
     getMatch : (id) => axios
         .get(`${baseUrl}/${id}`)
-        .then(res => res.data.match)
+        .then(res => {
+            return res.data;
+        })
 }
 
 export default matchAPI;

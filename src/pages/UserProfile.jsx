@@ -9,10 +9,7 @@ function UserProfile({claims}){
     const [password, setPassword] = useState(null);
 
     const getUserDetails = () => {
-        console.log('Claims: ', claims);
-        console.log("Is it true?", claims?.roles?.includes('ADMIN') && claims?.userId);
         if (claims?.roles?.includes('ADMIN') && claims?.userId) {
-          console.log('in claims userId', claims.userId)
           userAPI.getUser(claims.userId)
             .then(data => setUserDetails(data))
             .catch(error => console.error(error));
@@ -29,7 +26,6 @@ function UserProfile({claims}){
       }
 
       useEffect(() => {
-        console.log("Use effect claims", claims)
         getUserDetails();
       }, [claims]);
 
@@ -65,7 +61,6 @@ function UserProfile({claims}){
 
         userAPI.edit(claims.userId, userCredentials)
         .then(() => {
-            console.log("edit successful");
             alert("Edit was successful");
         })
         .catch(() => {

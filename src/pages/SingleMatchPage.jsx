@@ -1,13 +1,30 @@
+import React, {useEffect, useState} from "react";
+import { useParams } from "react-router-dom";
 import {Link} from 'react-router-dom';
+import matchAPI from "../API/matchAPI"
 
-function Match({match}){
-    var today = new Date();
-    var matchDate = new Date(match.date);
+function SingleMatchPage(){
+    const [match, setMatch] = useState({});
+    const {matchId} = useParams();
 
-    const matchPagePath = `/matches/${match.id}`;
+    const buyTicketPath = `/matches/${matchId}/tickets`
 
-    return (
-        <Link to={matchPagePath} style={{textDecoration: 'none', color: 'red'}}>
+    const refreshMatch = () => {
+        matchAPI.getMatch(matchId)
+            .then((data) =>{
+                setMatch(data);
+            })
+            .catch((error)=>
+            {
+                console.log("Error occured: ", error);
+            })
+    }
+
+    useEffect(() => {
+        refreshMatch();
+    }, [matchId]);
+    return(
+        <div>
             <div>
                 <li className="match-item" key={match.id}> 
                     <span className="match-details">
@@ -27,7 +44,7 @@ function Match({match}){
                             />
                         </span>
 
-                        {today >= matchDate ? `${match.goalsHome} - ${match.goalsAway}` : " VS "}
+                        {`${match.goalsHome} - ${match.goalsAway}`}
                         
                         <span className="away-team">
                             <img 
@@ -38,10 +55,15 @@ function Match({match}){
                             {match.awayTeamName} 
                         </span>
                     </span>
+                    <div className="ticket">
+                    <Link to={buyTicketPath} style={{textDecoration: 'none', color: 'red'}}>
+                        Buy Ticket
+                        </Link>
+                    </div>
                 </li>
             </div>
-        </Link>
+        </div>
     )
 }
 
-export default Match;
+export default SingleMatchPage;
