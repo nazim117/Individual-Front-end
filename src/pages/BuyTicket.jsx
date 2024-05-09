@@ -43,7 +43,7 @@ function BuyTicket(){
     }
 
     const handlePurchase = () => {
-        ticketAPI.buyTicket(ticket);
+        ticketAPI.buyTicket(selectedTicket.id);
     }
 
     useEffect(() => {

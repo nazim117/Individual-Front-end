@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import TokenManager from "../API/TokenManager";
 
-function NavBar({claims, handleLogout}){
+function NavBar(){
+    const claims = TokenManager.getClaimsFromLocalStorage();
 
     const navigate = useNavigate();
 
@@ -12,6 +14,11 @@ function NavBar({claims, handleLogout}){
             navigate("/");
         }
     }
+
+    const handleLogout = () => {
+        TokenManager.clear();
+      }
+
     return(
         <nav className="navbar navbar-expand-lg custom-style">
             <div className="container-fluid">

@@ -1,10 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-function LoginPage(props){
+import TokenManager from "../API/TokenManager";
+import loginAPI from "../API/loginAPI";
+
+function LoginPage(){
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    }
+    
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
     }
@@ -13,15 +22,35 @@ function LoginPage(props){
         setPassword(e.target.value);
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const loginCredentials = JSON.stringify({
-            email,
-            password
-        })
+    const handleLogin = async (credentials) => {
+        try{
+            const newClaims = await loginAPI.login(credentials);
+            TokenManager.setClaimsToLocalStorage(newClaims);
+            console.log("New claims: ", newClaims)
+            if(newClaims){
+                navigate("/");
+            }
+        } catch(error){
+            console.log(error);
+            alert("Invalid credentials. Check your email and password");
+            return;
+        }
+        
+      }
 
-        props.onLogin(loginCredentials);
-        navigate("/");
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try{
+            const loginCredentials = JSON.stringify({
+                email,
+                password
+            })
+            handleLogin(loginCredentials);
+
+        }catch(error){
+            console.log("Error logging in: ", error);
+        }
+
     };
     
     return(
@@ -34,7 +63,16 @@ function LoginPage(props){
                 </div>
                 <div>
                     <label htmlFor="password">Password: </label>
-                    <input type="password" id="password" value={password} onChange={handlePasswordChange} required autoComplete="current-password"/>
+                    <input 
+                        type={showPassword ? "text" : "password"} 
+                        id="password" 
+                        value={password} 
+                        onChange={handlePasswordChange} 
+                        required autoComplete="current-password"
+                    />
+                    <button type="button" onClick={togglePasswordVisibility}>
+                        {showPassword ? "Hide" : "Show"}
+                    </button>
                 </div>
                 <button type="submit">Login</button>
             </form>
