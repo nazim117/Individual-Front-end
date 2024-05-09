@@ -10,6 +10,7 @@ import LoginPage from "./pages/LoginPage";
 import UserProfile from "./pages/UserProfile";
 import SingleMatchPage from "./pages/SingleMatchPage";
 import BuyTicket from "./pages/BuyTicket";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/matches/:matchId/tickets" element={<BuyTicket/>}/>
           <Route path="/userProfile" element={<UserProfile/>} />
           <Route path="/login" element={<LoginPage/>} />
+          <Route path="/register" element={<RegisterPage/>}/>
         </Routes>
         <Footer/>
       </Router>

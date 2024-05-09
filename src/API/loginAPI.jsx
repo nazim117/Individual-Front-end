@@ -25,6 +25,28 @@ const loginAPI = {
         console.log(error);
         throw error;
       }
+    },
+    register: async(user) => {
+      try{
+        let config = {
+          method: 'post',
+          maxBodyLength: Infinity,
+          url: `${baseUrl}/register`,
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          data : user
+        };
+        
+        const response = await axios.request(config);
+        const accessToken = response.data.accessToken;
+        console.log(accessToken);
+        TokenManager.setAccessTokenToLocalStorage(accessToken);
+        return TokenManager.setAccessToken(accessToken)
+      }catch(error) {
+        console.log(error);
+        throw error;
+      }
     }
 }
 

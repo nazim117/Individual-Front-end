@@ -71,11 +71,14 @@ function LoginPage(){
                         required autoComplete="current-password"
                     />
                     <button type="button" onClick={togglePasswordVisibility}>
-                        {showPassword ? "Hide" : "Show"}
+                        {showPassword ? "Hide password" : "Show password"}
                     </button>
                 </div>
                 <button type="submit">Login</button>
             </form>
+            <div>
+                <a href="/register">Create account</a>
+            </div>
         </div>
     )
 }

@@ -3,6 +3,9 @@ import {Link} from 'react-router-dom';
 function Match({match}){
     var today = new Date();
     var matchDate = new Date(match.date);
+    const options = {timeZone: 'Europe/London'};
+    const matchDateStr = matchDate.toLocaleDateString('en-US', {...options, weekday:"short", day: 'numeric', month: 'long'});
+    const matchTime = matchDate.toLocaleTimeString('en-US', {...options, hour: 'numeric', minute: 'numeric'});
 
     const matchPagePath = `/matches/${match.id}`;
 
@@ -12,10 +15,9 @@ function Match({match}){
                 <li className="match-item" key={match.id}> 
                     <span className="match-details">
                         <div className="match-info">
-                            <div>{match.date}</div>
+                            <div>{matchDateStr}</div>
+                            <div>{matchTime}</div>
                             <div>{match.venueName} </div>
-                            <div>{match.statusShort}</div>
-                            {" "}
                         </div>
                         <hr></hr>
                         <span className="home-team">
