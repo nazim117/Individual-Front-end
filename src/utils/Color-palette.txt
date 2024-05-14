@@ -12,3 +12,18 @@ Red Orange (red)
 
 Carnation (salmon)
 #F75656
+
+Silver
+#C0C0C0
+
+Bice blue
+#3A6EA5
+
+Polynesian blue
+#004E98
+
+Anti-flash white
+#EBEBEB
+
+White for forms
+#e2e2e2

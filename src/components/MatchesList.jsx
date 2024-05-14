@@ -4,11 +4,11 @@ import Match from "./Match";
 function MatchesList({matches}) {
 
   return (
-    <ul>
+    <div className="matches-list">
       {matches.map(match => (
         <Match key={match.id} match={match} />
       ))}
-    </ul>
+    </div>
   )
 }
 

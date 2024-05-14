@@ -1,6 +1,10 @@
 .footer{
     border-top: 3px solid #C6D9E2;
     padding: 70px 0;
+    position:relative;
+    bottom: 0;
+    width: 100%;
+    background-color: #103C5A;
 }
 
 .footer-col{
@@ -67,6 +71,7 @@
 .container{
     max-width: 1170px;
     margin: auto;
+    padding: 0 15px;
 }
 
 ul{

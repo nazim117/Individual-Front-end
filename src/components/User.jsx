@@ -9,16 +9,18 @@ function User({user, handleDeleteUser}){
         }
     }
     return (
-        <div>
-            <li key={user.id}>{user.email} - {user.fname} {user.lname} 
-            <form onSubmit={handleSubmit}>
-                <button type="submit">
-                    <i className="fa fa-user-minus" aria-hidden="true"></i>
-                </button>
-                
-            </form>
-            </li>
-        </div>
+        <tr key={user.id}>
+            <td>{user.email} </td>
+            <td>{user.fname}</td> 
+            <td>{user.lname}</td>
+            <td>
+                <form onSubmit={handleSubmit}>
+                    <button type="submit">
+                        <i className="fa fa-user-minus" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
     )
 }
 

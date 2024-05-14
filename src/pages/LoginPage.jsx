@@ -8,6 +8,7 @@ function LoginPage(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const[error, setError] = useState('');
     const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
@@ -16,10 +17,12 @@ function LoginPage(){
     
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
+        setError('');
     }
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
+        setError('');
     }
 
     const handleLogin = async (credentials) => {
@@ -31,8 +34,8 @@ function LoginPage(){
                 navigate("/");
             }
         } catch(error){
-            console.log(error);
-            alert("Invalid credentials. Check your email and password");
+            console.error(error);
+            setError("Invalid credentials. Check your email and password");
             return;
         }
         
@@ -48,21 +51,21 @@ function LoginPage(){
             handleLogin(loginCredentials);
 
         }catch(error){
-            console.log("Error logging in: ", error);
+            console.error("Error logging in: ", error);
         }
 
     };
     
     return(
-        <div>
-            <h1>LoginPage</h1>
+        <div className="login-container">
+            <h1>Login</h1>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="email">Email: </label>
+                <div className="box email">
+                    <label htmlFor="email">Email</label>
                     <input type="email" id="email" value={email} onChange={handleEmailChange} required autoComplete="username"/>
                 </div>
-                <div>
-                    <label htmlFor="password">Password: </label>
+                <div className="box password">
+                    <label htmlFor="password">Password</label>
                     <input 
                         type={showPassword ? "text" : "password"} 
                         id="password" 
@@ -70,14 +73,17 @@ function LoginPage(){
                         onChange={handlePasswordChange} 
                         required autoComplete="current-password"
                     />
-                    <button type="button" onClick={togglePasswordVisibility}>
-                        {showPassword ? "Hide password" : "Show password"}
-                    </button>
                 </div>
+                    <button className="toggle-password" type="button" onClick={togglePasswordVisibility}>
+                    <i className={showPassword ? "fa fa-eye-slash" : "fa fa-eye"}></i>
+                    
+                    {showPassword? "Hide password" : "Show password"}
+                    </button>
                 <button type="submit">Login</button>
+                {error && <div className="error-message">{error}</div>}
             </form>
             <div>
-                <a href="/register">Create account</a>
+                <a className="create-account" href="/register">Create account</a>
             </div>
         </div>
     )

@@ -1,0 +1,37 @@
+.single-match-container {
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.match-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.match-info {
+    font-weight: bold;
+}
+
+.teams-info {
+    display: flex;
+    align-items: center;
+    margin: 0 0 50px;
+}
+
+.team-logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.buy-ticket-link {
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+}

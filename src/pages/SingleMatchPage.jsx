@@ -16,7 +16,7 @@ function SingleMatchPage(){
             })
             .catch((error)=>
             {
-                console.log("Error occured: ", error);
+                console.error("Error occured: ", error);
             })
     }
 
@@ -24,43 +24,41 @@ function SingleMatchPage(){
         refreshMatch();
     }, [matchId]);
     return(
-        <div>
-            <div>
-                <li className="match-item" key={match.id}> 
-                    <span className="match-details">
-                        <div className="match-info">
-                            <div>{match.date}</div>
-                            <div>{match.venueName} </div>
-                            <div>{match.statusShort}</div>
-                            {" "}
-                        </div>
-                        <hr></hr>
-                        <span className="home-team">
-                            {match.homeTeamName} 
-                            <img 
-                                className="team-logo" 
-                                src={`${match.homeTeamLogo}`}
-                                alt={`${match.homeTeamName}`}
-                            />
-                        </span>
-
-                        {`${match.goalsHome} - ${match.goalsAway}`}
-                        
-                        <span className="away-team">
-                            <img 
-                                className="team-logo" 
-                                src={`${match.awayTeamLogo}`}
-                                alt={`${match.awayTeamName}`}
-                            />
-                            {match.awayTeamName} 
-                        </span>
+        <div className="single-match-container">
+            <div className="match-details">
+                <div className="match-info"> 
+                    <div>{match.date}</div>
+                    <div>{match.venueName} </div>
+                    <div>{match.statusShort}</div>
+                </div>
+                <hr/>
+                <div className="teams-info">
+                    <span className="home-team">
+                        {match.homeTeamName} 
+                        <img 
+                            className="team-logo" 
+                            src={`${match.homeTeamLogo}`}
+                            alt={`${match.homeTeamName}`}
+                        />
                     </span>
-                    <div className="ticket">
-                    <Link to={buyTicketPath} style={{textDecoration: 'none', color: 'red'}}>
+                    <span className="score">
+                        {`${match.goalsHome} - ${match.goalsAway}`}
+                    </span>
+                    
+                    <span className="away-team">
+                        <img 
+                            className="team-logo" 
+                            src={`${match.awayTeamLogo}`}
+                            alt={`${match.awayTeamName}`}
+                        />
+                        {match.awayTeamName} 
+                    </span>
+                </div>
+                <div className="ticket">
+                    <Link to={buyTicketPath} className="buy-ticket-link">
                         Buy Ticket
-                        </Link>
-                    </div>
-                </li>
+                    </Link>
+                </div>
             </div>
         </div>
     )

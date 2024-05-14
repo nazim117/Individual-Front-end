@@ -21,7 +21,7 @@ img{
     background-color: transparent;
     border: 2px solid #F93435;
     padding: 5px 10px;
-    border-radius: 15%;
+    border-radius: 7%;
     transition: all 0.3s ease;
     cursor: pointer;
     color: #F93435;
@@ -30,6 +30,12 @@ img{
 .login a:hover{
     background-color: #F93435;
     color: #C6D9E2;
+}
+
+.logged-user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*responsive*/

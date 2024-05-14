@@ -87,48 +87,59 @@ function UserProfile(){
     };
 
     return(
-        <div>
-        <h1>User Profile</h1>
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="fName">First Name: </label>
-                    <input type="text" id="fName" value={fname || ''} onChange={handleFNameChange} required autoComplete="fName"/>
-            </div>
-            <div>
-                <label htmlFor="lName">Last Name: </label>
-                    <input type="text" id="lName" value={lname|| ''} onChange={handleLNameChange} required autoComplete="lName"/>
-            </div>
-            <div>
-                <label htmlFor="email">Email: </label>
-                <input type="email" id="email" value={email || ''} onChange={handleEmailChange} required autoComplete="username"/>
-            </div>
-            <div>
-                <label htmlFor="picture">Picture: </label>
-                    <input type="text" id="picture" value={picture || ''} onChange={handlePictureChange} required autoComplete="picture"/>
-            </div>
-            <div>
-                <label htmlFor="password">Password: </label>
-                <input type="password" id="password" value={password || ''} onChange={handlePasswordChange} required autoComplete="current-password"/>
-            </div>
-            <button type="submit">Update</button>
+        <div className="login-container">
+            <h1>User Profile</h1>
+            <form onSubmit={handleSubmit}>
+                <div className="box fName">
+                    <label htmlFor="fName">First Name</label>
+                        <input type="text" id="fName" value={fname || ''} onChange={handleFNameChange} required autoComplete="fName"/>
+                </div>
+                <div className="box lName">
+                    <label htmlFor="lName">Last Name</label>
+                        <input type="text" id="lName" value={lname|| ''} onChange={handleLNameChange} required autoComplete="lName"/>
+                </div>
+                <div className="box email">
+                    <label htmlFor="email">Email</label>
+                    <input type="email" id="email" value={email || ''} onChange={handleEmailChange} required autoComplete="username"/>
+                </div>
+                <div className="box picture">
+                    <label htmlFor="picture">Picture</label>
+                        <input type="text" id="picture" value={picture || ''} onChange={handlePictureChange} required autoComplete="picture"/>
+                </div>
+                <div className="box password">
+                    <input type="hidden" id="password" value={password || ''} onChange={handlePasswordChange} required autoComplete="current-password"/>
+                </div>
+                <button type="submit">Update</button>
             </form>
-
             <div>
                 <h2>Bought Tickets</h2>
-                <ul>
-                    {boughtTickets.map((ticket) => {
-                        {console.log("Ticket: ", ticket)}
-                        return (
-                            <li key={ticket.id}>
-                                <h3>Price: {ticket.price}$</h3>
-                                <h3>Row number: {ticket.rowNum}</h3>
-                                <h3>Seat number: {ticket.seatNumber}</h3>
-                                <h3>Match information: {ticket.footballMatch.homeTeamName} vs {ticket.footballMatch.awayTeamName}</h3>
-                                <br></br>
-                            </li>
-                        )
-                    })}
-                </ul>
+                {boughtTickets.length > 0 ? (
+                    <table>
+                    <thead>
+                        <tr>
+                            <th>Price</th>
+                            <th>Row Numeber</th>
+                            <th>Seat Number</th>
+                            <th>Match information</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {boughtTickets.map((ticket) => {
+                            {console.log("Ticket: ", ticket)}
+                            return (
+                                <tr key={ticket.id}>
+                                    <td>Price: {ticket.price}$</td>
+                                    <td>Row number: {ticket.rowNum}</td>
+                                    <td>Seat number: {ticket.seatNumber}</td>
+                                    <td>Match information: {ticket.footballMatch.homeTeamName} vs {ticket.footballMatch.awayTeamName}</td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                    </table>
+                ) : (
+                    <p>No bought tickets</p>
+                )}
             </div>
         </div>
     )

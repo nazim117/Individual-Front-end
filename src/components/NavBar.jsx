@@ -37,16 +37,17 @@ function NavBar(){
                     </ul>
                 </div>
                     {claims?(
-                        <div>
+                        <div className="logged-user">
+                        <div className='login'>
                             <a href="/userProfile"><i className="fa fa-user" aria-hidden="true"></i> USER PROFILE</a>
-                            <br></br>
+                        </div>
                             <form onSubmit={handleSubmit}>
                                 <button type="submit">LOGOUT</button>
                             </form>
                         </div>
                     ):(
                         <div className='login'>
-                            <a href="/login"><i className="fa fa-user" aria-hidden="true"></i> LOGIN</a>
+                            <a href="/login">LOGIN</a>
                         </div>
                     )}
             </div>

@@ -66,9 +66,10 @@ function BuyTicket(){
     const seats = [...new Set(tickets.map(ticket => ticket.seatNumber))];
 
     return(
-        <div>
-            <div>
-                <label htmlFor="row-number">Row Number: </label>
+        <div className="match-container">
+            <h2>Buy Ticket</h2>
+            <div className="input-conainer">
+                <label htmlFor="row-number">Row Number</label>
                 <select name="row-number" id="row-number" value={row} onChange={handleRow}>
                     {rows.map((row, index) => {
                         return(
@@ -79,8 +80,8 @@ function BuyTicket(){
                     })}
                 </select>
             </div>
-            <div>
-                <label htmlFor="seat-number">Seat Number: </label>
+            <div className="input-container">
+                <label htmlFor="seat-number">Seat Number</label>
                 <select name="seat-number" id="seat-number" value={seat} onChange={handleSeat}>
                     {seats.map((seat, index) => {
                         return(
@@ -91,10 +92,10 @@ function BuyTicket(){
                     })}
                 </select>
             </div>
-            <div>
+            <div className="price-container">
                 <label>{selectedTicket ? `Price: ${selectedTicket.price}$` : "Select row and seat"}</label>
             </div>
-            <button onClick={handlePurchase}>Buy Ticket</button>
+            <button className="buy-ticket-button" onClick={handlePurchase}>Buy Ticket</button>
         </div>
     )
 }

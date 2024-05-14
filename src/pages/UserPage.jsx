@@ -94,46 +94,46 @@ function UsersPage(){
 
     return(
         <div>
-        <h1>UserPage</h1>
+        <h1>User Page</h1>
             <div>
                 <UserList users={users} handleDeleteUser={handleDeleteUser}/>
             </div>
 
-            <form onSubmit={handleCreateUser}>
-                <div>
-                    <label htmlFor="fName">First Name: </label>
+            <form className="login-container" onSubmit={handleCreateUser}>
+                <div className="box fName">
+                    <label htmlFor="fName">First Name</label>
                         <input type="text" id="fName" name="fName" value={fname} onChange={handleFNameChange} required autoComplete="given-name"/>
                 </div>
-                <div>
-                    <label htmlFor="lName">Last Name: </label>
+                <div className="box lName">
+                    <label htmlFor="lName">Last Name</label>
                         <input type="text" id="lName" name="lname" value={lname} onChange={handleLNameChange} required autoComplete="family-name"/>
                 </div>
-                <div>
-                    <label htmlFor="email">Email: </label>
+                <div className="box email">
+                    <label htmlFor="email">Email</label>
                     <input type="email" id="email" name="email" value={email} onChange={handleEmailChange} required autoComplete="email"/>
                 </div>
-                <div>
-                    <label htmlFor="picture">Picture: </label>
+                <div className="box picture">
+                    <label htmlFor="picture">Picture</label>
                         <input type="text" id="picture" name="picture" value={picture} onChange={handlePictureChange} autoComplete="picture"/>
                 </div>
-                <div>
-                    <label htmlFor="picture">Role: </label>
+                <div className="box role">
+                    <label htmlFor="picture">Role</label>
                     <select name="user-role" id="user-role" value={role} onChange={handleRoleChange}>
                         <option value="FOOTBALL_FAN">Football Fan</option>
                         <option value="CUSTOMER_SERVICE">Customer service</option>
                         <option value="ADMIN">Admin</option>
                     </select>
                 </div>
-                <div>
-                    <label htmlFor="password">Password: </label>
+                <div className="box password">
+                    <label htmlFor="password">Password</label>
                     <input type="password" id="password" name="password" value={password} onChange={handlePasswordChange} required autoComplete="new-password"/>
                 </div>
-                <div>
-                    <label htmlFor="confirm-password">Confirm Password: </label>
+                <div className="box confirm-password">
+                    <label htmlFor="confirm-password">Confirm Password</label>
                     <input type="password" id="confirm-password" name="confirm-password" value={confirmPassword} onChange={handleConfirmPasswordChange} required autoComplete="new-password"/>
                 </div>
 
-                <button type="submit">Create USer</button>
+                <button type="submit">Create User</button>
             </form>
         </div>
     )

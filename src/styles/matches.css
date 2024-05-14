@@ -1,0 +1,6 @@
+.matches-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px;
+}

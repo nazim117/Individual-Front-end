@@ -1,0 +1,83 @@
+.login-container{
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color:#e2e2e2;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.box{
+    display: flex;
+    flex-direction: column;
+}
+.toggle-password{
+    margin: 0 0 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 160px;
+    height: 30px;
+}
+
+.toggle-password:focus{
+    outline: none;
+}
+
+label{
+    font-weight: bold;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"]{
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button{
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #EBEBEB;
+    color: #F75656;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+
+}
+
+button:hover{
+    color: #EBEBEB;
+    background-color: #F75656;
+}
+
+.error-message{
+    columns: #ff0000;
+    margin-top: 10px;
+}
+
+.create-account{
+    margin: 10px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.create-account:hover{
+    text-decoration: underline;
+}
