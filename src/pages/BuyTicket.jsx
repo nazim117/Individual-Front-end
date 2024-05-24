@@ -43,7 +43,18 @@ function BuyTicket(){
     }
 
     const handlePurchase = () => {
-        ticketAPI.buyTicket(selectedTicket.id);
+        if(!selectedTicket || selectedTicket.purchased){
+            alert("Select row and seat for purchase");
+            return;
+        }
+
+        ticketAPI.buyTicket(selectedTicket.id)
+        .then(() => {
+            navigate("/thank-you");
+        })
+        .catch(error => {
+            console.error("Error occured during purchase: ", error);
+        })
     }
 
     useEffect(() => {

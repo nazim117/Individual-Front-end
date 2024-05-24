@@ -25,25 +25,40 @@ function NavBar(){
                 <a className="navbar-brand" href="/"><img src="/Logo.png"/></a>
                 <div id="navbarNav">
                     <ul className="navbar-nav">
+                        {claims && (claims.roles.includes("ADMIN") || claims.roles.includes("CUSTOMER_SERVICE"))? (
+                        <div className="li-elements">
                         <li className="nav-item">
                             <a className="nav-link custom-nav-link" href="/matches">MATCHES</a>
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link custom-nav-link" href="#">GROUPS</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link custom-nav-link" href="#">TEAMS</a>
-                        </li>
+                            <li className="nav-item">
+                                <a className="nav-link custom-nav-link" href="/users">USERS</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link custom-nav-link" href="/tickets">TICKETS</a>
+                            </li>
+                        </div>
+                        ):(
+                        <div className="li-elements">
+                            <li className="nav-item">
+                                <a className="nav-link custom-nav-link" href="/matches">MATCHES</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link custom-nav-link" href="/rankings">RANKINGS</a>
+                            </li>
+                        </div>
+                        )}
                     </ul>
                 </div>
                     {claims?(
                         <div className="logged-user">
-                        <div className='login'>
-                            <a href="/userProfile"><i className="fa fa-user" aria-hidden="true"></i> USER PROFILE</a>
-                        </div>
-                            <form onSubmit={handleSubmit}>
-                                <button type="submit">LOGOUT</button>
-                            </form>
+                            <div className='login'>
+                                <a href="/userProfile"><i className="fa fa-user" aria-hidden="true"></i> USER PROFILE</a>
+                            </div>
+                            <div className='login'>
+                                <form className="logout" onSubmit={handleSubmit}>
+                                    <button type="submit">LOGOUT</button>
+                                </form>
+                            </div>
                         </div>
                     ):(
                         <div className='login'>

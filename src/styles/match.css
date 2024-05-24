@@ -6,8 +6,14 @@
     justify-content: center;
     align-items: center;
     margin: 30px;
-    width: 700px;
-    height: 330px;
+    width: 400px;
+    height: 550px;
+}
+
+.home-team, .away-team{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .match-item:hover{
@@ -16,7 +22,7 @@
 }
 
 .match-details{
-    font-size: 25px;
+    font-size: 30px;
 }
 
 .match-info{
@@ -25,8 +31,3 @@
     justify-content: center;
     align-items: center;
 }
-
-.team-logo{
-    width: 100px;
-}
-

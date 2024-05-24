@@ -25,13 +25,19 @@
 }
 
 .team-logo {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
+    width: 90px;
+    height: 80px;
+    margin: 10px 40px;
 }
 
 .buy-ticket-link {
     text-decoration: none;
     color: red;
     font-weight: bold;
+}
+
+.ticket-unavailable{
+    color: red;
+    font-weight: bold;
+    padding: 10px;
 }

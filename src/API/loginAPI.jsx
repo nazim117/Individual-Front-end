@@ -22,7 +22,7 @@ const loginAPI = {
         TokenManager.setAccessTokenToLocalStorage(accessToken);
         return TokenManager.setAccessToken(accessToken)
       }catch(error) {
-        console.log(error);
+        console.error(error);
         throw error;
       }
     },
@@ -40,11 +40,10 @@ const loginAPI = {
         
         const response = await axios.request(config);
         const accessToken = response.data.accessToken;
-        console.log(accessToken);
         TokenManager.setAccessTokenToLocalStorage(accessToken);
         return TokenManager.setAccessToken(accessToken)
       }catch(error) {
-        console.log(error);
+        console.error(error);
         throw error;
       }
     }

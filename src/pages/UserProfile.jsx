@@ -5,11 +5,11 @@ import TokenManager from "../API/TokenManager";
 
 function UserProfile(){
     const claims = TokenManager.getClaimsFromLocalStorage();
-    const [fname, setFName] = useState(null);
-    const [lname, setLName] = useState(null);
-    const [email, setEmail] = useState(null);
-    const [picture, setPicture] = useState(null);
-    const [password, setPassword] = useState(null);
+    const [fname, setFName] = useState("");
+    const [lname, setLName] = useState("");
+    const [email, setEmail] = useState("");
+    const [picture, setPicture] = useState("");
+    const [password, setPassword] = useState("");
     const [boughtTickets, setBoughtTickets] = useState([]);
 
     const getUserDetails = () => {
@@ -43,7 +43,7 @@ function UserProfile(){
 
       useEffect(() => {
         getUserDetails();
-      }, [claims]);
+      }, []);
 
       console.log("Purchased ticekts: ", boughtTickets);
 
@@ -118,8 +118,8 @@ function UserProfile(){
                     <thead>
                         <tr>
                             <th>Price</th>
-                            <th>Row Numeber</th>
-                            <th>Seat Number</th>
+                            <th>Row</th>
+                            <th>Seat</th>
                             <th>Match information</th>
                         </tr>
                     </thead>
@@ -128,10 +128,10 @@ function UserProfile(){
                             {console.log("Ticket: ", ticket)}
                             return (
                                 <tr key={ticket.id}>
-                                    <td>Price: {ticket.price}$</td>
-                                    <td>Row number: {ticket.rowNum}</td>
-                                    <td>Seat number: {ticket.seatNumber}</td>
-                                    <td>Match information: {ticket.footballMatch.homeTeamName} vs {ticket.footballMatch.awayTeamName}</td>
+                                    <td>{ticket.price}$</td>
+                                    <td>{ticket.rowNum}</td>
+                                    <td>{ticket.seatNumber}</td>
+                                    <td>{ticket.footballMatch.homeTeamName} vs {ticket.footballMatch.awayTeamName}</td>
                                 </tr>
                             )
                         })}

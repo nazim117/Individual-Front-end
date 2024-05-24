@@ -76,7 +76,6 @@ function LoginPage(){
                 </div>
                     <button className="toggle-password" type="button" onClick={togglePasswordVisibility}>
                     <i className={showPassword ? "fa fa-eye-slash" : "fa fa-eye"}></i>
-                    
                     {showPassword? "Hide password" : "Show password"}
                     </button>
                 <button type="submit">Login</button>

@@ -1,19 +1,28 @@
 import axios from "axios";
+import baseUrl from "../utils/baseUrl";
 
-const baseUrl = "http://localhost:8080/matches";
+const matchesUrl = baseUrl.matches;
 
 const matchAPI = {
-    getMatches : () => axios
-        .get(baseUrl)
+    getMatchesDescDate : () => axios
+        .get(`${matchesUrl}/descending`)
         .then(res => res.data.matches),
+
+    getMatchesAscDate : () => axios
+        .get(`${matchesUrl}/ascending`)
+        .then(res => res.data.matches),
+
+    getMatchesByMostSold : () => axios
+        .get(`${matchesUrl}/most-sold`)
+        .then(res => res.data.matches),
+        
     getTop3Matches : () => axios
-    .get(`${baseUrl}/upcoming`)
+    .get(`${matchesUrl}/upcoming`)
     .then(res => res.data.matches),
+
     getMatch : (id) => axios
-        .get(`${baseUrl}/${id}`)
-        .then(res => {
-            return res.data;
-        })
+        .get(`${matchesUrl}/${id}`)
+        .then(res => {return res.data;})
 }
 
 export default matchAPI;

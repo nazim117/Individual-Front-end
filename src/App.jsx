@@ -11,6 +11,7 @@ import UserProfile from "./pages/UserProfile";
 import SingleMatchPage from "./pages/SingleMatchPage";
 import BuyTicket from "./pages/BuyTicket";
 import RegisterPage from "./pages/RegisterPage";
+import ThankYouPage from "./pages/ThankYouPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/userProfile" element={<UserProfile/>} />
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/register" element={<RegisterPage/>}/>
+          <Route path="/thank-you" element={<ThankYouPage/>}/>
         </Routes>
         <Footer/>
       </Router>

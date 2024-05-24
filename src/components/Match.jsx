@@ -20,23 +20,23 @@ function Match({match}){
                     </div>
                     <hr></hr>
                     <span className="home-team">
-                        {match.homeTeamName} {" "}
                         <img 
                             className="team-logo" 
                             src={`${match.homeTeamLogo}`}
                             alt={`${match.homeTeamName}`}
                         />
+                    <div>{match.homeTeamName}</div>
                     </span>
 
                     {today >= matchDate ? ` ${match.goalsHome} - ${match.goalsAway} ` : " VS "}
                     
                     <span className="away-team">
+                        <div>{match.awayTeamName}</div>
                         <img 
                             className="team-logo" 
                             src={`${match.awayTeamLogo}`}
                             alt={`${match.awayTeamName}`}
                         />
-                        {" "} {match.awayTeamName} 
                     </span>
                 </span>
             </div>

@@ -11,6 +11,9 @@
 @import url("userPage.css");
 @import url("buyTicket.css");
 @import url("singleMatch.css");
+@import url("chat.css");
+@import url("thankYou.css");
+
 *{
   margin: 0;
   padding: 0;

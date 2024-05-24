@@ -16,10 +16,9 @@ const ticketAPI = {
         .then(res => {
             return res.data;
         }),
-        buyTicket: (data) => {
+        buyTicket: async (data) => {
             const user = TokenManager.getClaimsFromLocalStorage();
-            console.log("USer id token: ", user.userId);
-            console.log("Ticket id token: ", data);
+
             let config = {
                 method: 'post',
                 maxBodyLength: Infinity,
@@ -30,14 +29,15 @@ const ticketAPI = {
                 },
                 data
               };
-              axios.request(config)
-              .then((response) => {
-                console.log("Buy ticket response data: ", response.data);
+              return axios
+                .request(config)
+                .then((response) => {
                 return response.data;
-              })
-              .catch((error) => {
-                console.log(error);
-              });
+                })
+                .catch((error) => {
+                  console.log(error);
+                  throw error;
+                });
         },
         getBoughtTickets: (ticketId) => axios
           .get(`${baseUrl}/users/${ticketId}`,{

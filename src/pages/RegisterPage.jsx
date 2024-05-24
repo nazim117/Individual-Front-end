@@ -79,23 +79,23 @@ function RegisterPage() {
             <h1>Register</h1>
             <form onSubmit={handleCreateUser}>
                 <div className="box fName">
-                    <label htmlFor="fName">First Name: </label>
+                    <label htmlFor="fName">First Name</label>
                         <input type="text" id="fName" name="fName" value={fName} onChange={handleFNameChange} required autoComplete="given-name"/>
                 </div>
                 <div className="box lName">
-                    <label htmlFor="lName">Last Name: </label>
+                    <label htmlFor="lName">Last Name</label>
                         <input type="text" id="lName" name="lname" value={lName} onChange={handleLNameChange} required autoComplete="family-name"/>
                 </div>
                 <div className="box email">
-                    <label htmlFor="email">Email: </label>
+                    <label htmlFor="email">Email</label>
                     <input type="email" id="email" name="email" value={email} onChange={handleEmailChange} required autoComplete="email"/>
                 </div>
                 <div className="box picture">
-                    <label htmlFor="picture">Picture: </label>
+                    <label htmlFor="picture">Picture</label>
                         <input type="text" id="picture" name="picture" value={picture} onChange={handlePictureChange} autoComplete="picture"/>
                 </div>
                 <div className="box password">
-                    <label htmlFor="password">Password: </label>
+                    <label htmlFor="password">Password</label>
                     <input 
                     type={showPassword ? "text" : "password"} 
                     id="password" 
@@ -105,7 +105,7 @@ function RegisterPage() {
                     required autoComplete="new-password"/>
                 </div>
                 <div className="box confirm-password">
-                    <label htmlFor="confirm-password">Confirm Password: </label>
+                    <label htmlFor="confirm-password">Confirm Password</label>
                     <input 
                     type={showPassword ? "text" : "password"} 
                     id="confirm-password" 
@@ -116,7 +116,8 @@ function RegisterPage() {
                 </div>
 
                 <button className="toggle-password" type="button" onClick={togglePasswordVisibility}>
-                <i className={showPassword ? "fa fa-eye-slash" : "fa fa-eye"}></i>
+                    <i className={showPassword ? "fa fa-eye-slash" : "fa fa-eye"}></i>
+                    {showPassword? "Hide password" : "Show password"}
                 </button>
 
                 <button type="submit">Create Account</button>

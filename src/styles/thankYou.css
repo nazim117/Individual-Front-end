@@ -1,0 +1,32 @@
+.thank-you-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #103C5A    ;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.thank-you-header{
+    color: #F93435;
+    margin-bottom: 20px;
+}
+
+.thank-you-paragraph{
+    color: #F93435;
+    margin-bottom: 10px;
+}
+
+.thank-you-button{
+    background-color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}

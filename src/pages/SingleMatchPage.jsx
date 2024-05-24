@@ -7,6 +7,12 @@ function SingleMatchPage(){
     const [match, setMatch] = useState({});
     const {matchId} = useParams();
 
+    var today = new Date();
+    var matchDate = new Date(match.date);
+    const options = {timeZone: 'Europe/London'};
+    const matchDateStr = matchDate.toLocaleDateString('en-US', {...options, weekday:"short", day: 'numeric', month: 'long'});
+    const matchTime = matchDate.toLocaleTimeString('en-US', {...options, hour: 'numeric', minute: 'numeric'});
+
     const buyTicketPath = `/matches/${matchId}/tickets`
 
     const refreshMatch = () => {
@@ -27,37 +33,41 @@ function SingleMatchPage(){
         <div className="single-match-container">
             <div className="match-details">
                 <div className="match-info"> 
-                    <div>{match.date}</div>
+                    <div>{matchDateStr}</div>
+                    <div>{matchTime}</div>
                     <div>{match.venueName} </div>
-                    <div>{match.statusShort}</div>
                 </div>
                 <hr/>
                 <div className="teams-info">
                     <span className="home-team">
-                        {match.homeTeamName} 
+                    <div>
+                        {match.homeTeamName}
+
+                    </div>
                         <img 
                             className="team-logo" 
                             src={`${match.homeTeamLogo}`}
                             alt={`${match.homeTeamName}`}
                         />
                     </span>
-                    <span className="score">
-                        {`${match.goalsHome} - ${match.goalsAway}`}
-                    </span>
-                    
+                    {today >= matchDate ? ` ${match.goalsHome} - ${match.goalsAway} ` : " VS "}
                     <span className="away-team">
+                        {match.awayTeamName} 
                         <img 
                             className="team-logo" 
                             src={`${match.awayTeamLogo}`}
                             alt={`${match.awayTeamName}`}
                         />
-                        {match.awayTeamName} 
                     </span>
                 </div>
                 <div className="ticket">
+                {today < matchDate ? (
                     <Link to={buyTicketPath} className="buy-ticket-link">
                         Buy Ticket
                     </Link>
+                ) : (
+                    <span className="ticket-unavailable">Tickets are not longer available</span>
+                )}
                 </div>
             </div>
         </div>
