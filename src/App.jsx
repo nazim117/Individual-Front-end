@@ -12,6 +12,7 @@ import SingleMatchPage from "./pages/SingleMatchPage";
 import BuyTicket from "./pages/BuyTicket";
 import RegisterPage from "./pages/RegisterPage";
 import ThankYouPage from "./pages/ThankYouPage";
+import Unautorized from "./pages/Unauthorized";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/register" element={<RegisterPage/>}/>
           <Route path="/thank-you" element={<ThankYouPage/>}/>
+          <Route path="/unauthorized" element={<Unautorized/>}/>
         </Routes>
         <Footer/>
       </Router>

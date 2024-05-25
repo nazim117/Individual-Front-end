@@ -29,7 +29,6 @@ function LoginPage(){
         try{
             const newClaims = await loginAPI.login(credentials);
             TokenManager.setClaimsToLocalStorage(newClaims);
-            console.log("New claims: ", newClaims)
             if(newClaims){
                 navigate("/");
             }

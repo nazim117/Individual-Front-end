@@ -1,7 +1,8 @@
 import axios from "axios";
 import TokenManager from "./TokenManager";
+import baseUrl from "../utils/baseUrl";
 
-const baseUrl = `http://localhost:8080/tokens`;
+const tokenUrl = baseUrl.tokens;
 
 const loginAPI = {
     login: async (credentials) => {
@@ -9,7 +10,7 @@ const loginAPI = {
         let config = {
           method: 'post',
           maxBodyLength: Infinity,
-          url: baseUrl,
+          url: tokenUrl,
           headers: { 
             'Content-Type': 'application/json'
           },
@@ -18,7 +19,6 @@ const loginAPI = {
         
         const response = await axios.request(config);
         const accessToken = response.data.accessToken;
-        console.log(accessToken);
         TokenManager.setAccessTokenToLocalStorage(accessToken);
         return TokenManager.setAccessToken(accessToken)
       }catch(error) {
@@ -31,7 +31,7 @@ const loginAPI = {
         let config = {
           method: 'post',
           maxBodyLength: Infinity,
-          url: `${baseUrl}/register`,
+          url: `${tokenUrl}/register`,
           headers: { 
             'Content-Type': 'application/json'
           },

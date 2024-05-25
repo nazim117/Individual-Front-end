@@ -21,7 +21,7 @@ function BuyTicket(){
             })
             .catch((error)=>
             {
-                console.log("Error occured: ", error)
+                console.error("Error occured: ", error)
             })
     }
 
@@ -63,7 +63,6 @@ function BuyTicket(){
             return navigate(-1);
         }
         const claims = TokenManager.getClaimsFromLocalStorage();
-        console.log("token: ", claims);
         if(!claims.roles.includes("FOOTBALL_FAN")){
             alert("Login as a football fan to purchase ticket");
             return navigate(-1);

@@ -9,14 +9,9 @@ function Home(){
     const [isChatOpen, setIsChatOpen] = useState(false);
 
     const refreshMatches = () => {
-        matchAPI.getTop3Matches()
+        matchAPI.getTop6Matches()
             .then((data) =>{
-                console.log(data);
                 setMatches(data);
-            })
-            .catch((error)=>
-            {
-                console.error("Error occured: ", error)
             })
     }
 

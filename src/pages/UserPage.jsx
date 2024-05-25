@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import userAPI from "../API/userAPI"
 import UserList from "../components/UserList";
+import { useNavigate } from "react-router-dom";
 
 function UsersPage(){
     const [users, setUsers] = useState([]);
@@ -10,7 +11,9 @@ function UsersPage(){
     const [picture, setPicture] = useState("");
     const [role, setRole] = useState("FOOTBALL_FAN");
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");    
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
+    const navigate = useNavigate();
 
     const refreshUsers = () => {
         userAPI.getUsers()
@@ -19,9 +22,27 @@ function UsersPage(){
             })
             .catch((error)=>
             {
-                console.log("Error occured: ", error)
+                console.error("Error occured: ", error);
+                navigate('/unauthorized');
             })
     }
+
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    }
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        userAPI.searchUser(searchQuery)
+        .then((data) => {
+            setUsers(data);
+        })
+        .catch((error) => {
+            console.error("Error occured: ", error)
+            navigate('/unauthorized');
+        })
+    }
+
 
     const handleFNameChange = (e) => {
         setFName(e.target.value);
@@ -75,9 +96,6 @@ function UsersPage(){
             .then(() => { 
                 refreshUsers();
             })
-            .catch((error) => {
-                console.error("Error fetching items ", error)
-            })
 
     }
 
@@ -94,7 +112,17 @@ function UsersPage(){
 
     return(
         <div>
-        <h1>User Page</h1>
+            <h1>User Page</h1>
+            <form onSubmit={handleSearch} className="search-form">
+                <input
+                    type="text"
+                    placeholder="Search users..."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                />
+                <button type="submit">Search</button>
+            </form>
+
             <div>
                 <UserList users={users} handleDeleteUser={handleDeleteUser}/>
             </div>

@@ -18,7 +18,6 @@ const ChatPopup = ({onClose}) => {
     const handleSendMessage = (message) => {
         if(isConnected && stompClient){
             const payload = { 'id': uuidv4(), 'from': claims.sub, 'to': message.to, 'text': message.text };
-            console.log("Payload: ", payload);
             stompClient.publish({ destination: `/user/${payload.to}/queue/inboxmessages`, body: JSON.stringify(payload) });
             setMessagesReceived(prevMessages => [...prevMessages, payload]);
         }else{
@@ -62,10 +61,8 @@ const ChatPopup = ({onClose}) => {
             });
             
             client.onConnect = () => {
-                console.log("Subscribed to private topic");
                 // subscribe to the backend "private" topic
                 client.subscribe(`/user/${username}/queue/inboxmessages`, (data) => {
-                    console.log("Subscription Data: ",data);
                     onMessageReceived(data);
                 });
             };
@@ -89,7 +86,6 @@ const ChatPopup = ({onClose}) => {
         };
 
         if(!stompClient){
-            console.log("Setting up STOMP client");
             setupStompClient(claims.sub)
         }
 

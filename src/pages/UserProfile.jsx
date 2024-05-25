@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import userAPI from "../API/userAPI";
 import ticketApi from "../API/ticketAPI";
 import TokenManager from "../API/TokenManager";
+import { useNavigate } from "react-router-dom";
 
 function UserProfile(){
     const claims = TokenManager.getClaimsFromLocalStorage();
@@ -11,6 +12,7 @@ function UserProfile(){
     const [picture, setPicture] = useState("");
     const [password, setPassword] = useState("");
     const [boughtTickets, setBoughtTickets] = useState([]);
+    const navigate = useNavigate();
 
     const getUserDetails = () => {
         if (claims?.roles?.some(role => ['ADMIN', "CUSTOMER_SERVICE", "FOOTBALL_FAN"].includes(role)) && claims?.userId) {
@@ -19,7 +21,11 @@ function UserProfile(){
                 setUserDetails(data);
                 fetchBoughtTickets(claims.userId);
             })
-            .catch(error => console.error(error));
+            .catch((e) => {
+                console.error("Error retrieving user data: ", e);
+                navigate('/unauthorized');
+
+            })
         }
       }
 
@@ -35,17 +41,13 @@ function UserProfile(){
       const fetchBoughtTickets = (userId) => {
         ticketApi.getBoughtTickets(userId)
                 .then(data => {
-                    console.log("Bought tickets data",data)
                     setBoughtTickets(data)
                 })
-                .catch(error => console.error(error))
       }
 
       useEffect(() => {
         getUserDetails();
       }, []);
-
-      console.log("Purchased ticekts: ", boughtTickets);
 
     const handleFNameChange = (e) => {
         setFName(e.target.value);
@@ -81,9 +83,6 @@ function UserProfile(){
         .then(() => {
             alert("Edit was successful");
         })
-        .catch(() => {
-            console.log("error editing user");
-        })
     };
 
     return(
@@ -112,7 +111,6 @@ function UserProfile(){
                 <button type="submit">Update</button>
             </form>
             <div>
-                <h2>Bought Tickets</h2>
                 {boughtTickets.length > 0 ? (
                     <table>
                     <thead>

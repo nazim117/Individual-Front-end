@@ -13,6 +13,7 @@
 @import url("singleMatch.css");
 @import url("chat.css");
 @import url("thankYou.css");
+@import url("unauthorized.css");
 
 *{
   margin: 0;
