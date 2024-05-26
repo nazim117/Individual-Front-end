@@ -2,14 +2,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TokenManager from "../API/TokenManager";
 import loginAPI from "../API/loginAPI";
+import { useAuth } from "../components/AuthContext";
 
 function LoginPage(){
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const[error, setError] = useState('');
     const navigate = useNavigate();
+    const {login} = useAuth();
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -30,6 +31,7 @@ function LoginPage(){
             const newClaims = await loginAPI.login(credentials);
             TokenManager.setClaimsToLocalStorage(newClaims);
             if(newClaims){
+                login();
                 navigate("/");
             }
         } catch(error){

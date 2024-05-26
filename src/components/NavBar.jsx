@@ -1,22 +1,16 @@
-import { useNavigate } from "react-router-dom";
 import TokenManager from "../API/TokenManager";
+import Logout from "./Logout"
+import { useAuth } from "./AuthContext";
 
 function NavBar(){
+    const { logout} = useAuth();
     const claims = TokenManager.getClaimsFromLocalStorage();
-
-    const navigate = useNavigate();
-
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        
-        if(confirm("Are you sure you want to logout?")){
-            handleLogout();
-            navigate("/");
-        }
-    }
 
     const handleLogout = () => {
         TokenManager.clear();
+        if(confirm("Are you sure you want to logout?")){
+            logout();
+        }
       }
 
     return(
@@ -25,28 +19,25 @@ function NavBar(){
                 <a className="navbar-brand" href="/"><img src="/Logo.png"/></a>
                 <div id="navbarNav">
                     <ul className="navbar-nav">
-                        {claims && (claims.roles.includes("ADMIN") || claims.roles.includes("CUSTOMER_SERVICE"))? (
-                        <div className="li-elements">
-                        <li className="nav-item">
-                            <a className="nav-link custom-nav-link" href="/matches">MATCHES</a>
-                        </li>
-                            <li className="nav-item">
-                                <a className="nav-link custom-nav-link" href="/users">USERS</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link custom-nav-link" href="/tickets">TICKETS</a>
-                            </li>
-                        </div>
-                        ):(
                         <div className="li-elements">
                             <li className="nav-item">
                                 <a className="nav-link custom-nav-link" href="/matches">MATCHES</a>
                             </li>
+                        {claims && (claims.roles.includes("ADMIN") || claims.roles.includes("CUSTOMER_SERVICE"))? (
+                            <>
+                                <li className="nav-item">
+                                    <a className="nav-link custom-nav-link" href="/users">USERS</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link custom-nav-link" href="/tickets">TICKETS</a>
+                                </li>
+                            </>
+                        ):(
                             <li className="nav-item">
                                 <a className="nav-link custom-nav-link" href="/rankings">RANKINGS</a>
                             </li>
-                        </div>
                         )}
+                        </div>
                     </ul>
                 </div>
                     {claims?(
@@ -55,9 +46,7 @@ function NavBar(){
                                 <a href="/userProfile"><i className="fa fa-user" aria-hidden="true"></i> USER PROFILE</a>
                             </div>
                             <div className='login'>
-                                <form className="logout" onSubmit={handleSubmit}>
-                                    <button type="submit">LOGOUT</button>
-                                </form>
+                                <Logout/>
                             </div>
                         </div>
                     ):(

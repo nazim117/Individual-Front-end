@@ -13,27 +13,31 @@ import BuyTicket from "./pages/BuyTicket";
 import RegisterPage from "./pages/RegisterPage";
 import ThankYouPage from "./pages/ThankYouPage";
 import Unautorized from "./pages/Unauthorized";
+import { AuthProvider } from "./components/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <NavBar/>
-        <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/matches" element={<MatchesPage/>} />
-          <Route path="/tickets" element={<TicketsPage/>} />
-          <Route path="/users" element={<UserPage/>} />
-          <Route path="/matches/:matchId" element={<SingleMatchPage/>}/>
-          <Route path="/matches/:matchId/tickets" element={<BuyTicket/>}/>
-          <Route path="/userProfile" element={<UserProfile/>} />
-          <Route path="/login" element={<LoginPage/>} />
-          <Route path="/register" element={<RegisterPage/>}/>
-          <Route path="/thank-you" element={<ThankYouPage/>}/>
-          <Route path="/unauthorized" element={<Unautorized/>}/>
-        </Routes>
-        <Footer/>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <NavBar/>
+          <Routes>
+            <Route path="/" element={<Home/>} />
+            <Route path="/matches" element={<MatchesPage/>} />
+            <Route path="/tickets" element={<TicketsPage/>} />
+            <Route path="/matches/:matchId" element={<SingleMatchPage/>}/>
+            <Route path="/login" element={<LoginPage/>} />
+            <Route path="/register" element={<RegisterPage/>}/>
+            <Route path="/thank-you" element={<ThankYouPage/>}/>
+            <Route path="/unauthorized" element={<Unautorized/>}/>
+            <Route path="/users" element={<ProtectedRoute element={<UserPage/>} />} />
+            <Route path="/matches/:matchId/tickets" element={<ProtectedRoute element={<BuyTicket/>} />}/>
+            <Route path="/userProfile" element={<ProtectedRoute element={<UserProfile/>} />} />
+          </Routes>
+          <Footer/>
+        </Router>
+      </AuthProvider>
     </div>
 );
 }

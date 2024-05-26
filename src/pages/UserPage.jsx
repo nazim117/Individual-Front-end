@@ -43,7 +43,6 @@ function UsersPage(){
         })
     }
 
-
     const handleFNameChange = (e) => {
         setFName(e.target.value);
     }

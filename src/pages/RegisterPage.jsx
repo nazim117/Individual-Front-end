@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import loginAPI from "../API/loginAPI";
 import TokenManager from "../API/TokenManager";
+import { useAuth } from "../components/AuthContext";
 
 function RegisterPage() {
     const [fName, setFName] = useState("");
@@ -12,6 +13,7 @@ function RegisterPage() {
     const [showPassword, setShowPassword] = useState(false);
     const [confirmPassword, setConfirmPassword] = useState("");
     const navigate = useNavigate();
+    const {login} = useAuth();
 
     const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -66,6 +68,7 @@ function RegisterPage() {
             TokenManager.setClaimsToLocalStorage(newClaims);
             console.log("New claims: ", newClaims)
             if(newClaims){
+                login();
                 navigate("/");
             }
         })

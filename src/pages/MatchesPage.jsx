@@ -7,13 +7,12 @@ function MatchesPage(){
     const [sortOrder, setSortOrder] = useState("DESC");
 
     const refreshMatches = (order = 'DESC') => {
-        let fetchMatches;
+        let fetchMatches = matchAPI.getMatchesDescDate;
+        
         if(order === 'MOST-SOLD-TICKETS'){
             fetchMatches = matchAPI.getMatchesByMostSold;
         }else if(order === 'ASC'){
             fetchMatches = matchAPI.getMatchesAscDate;
-        }else{
-            fetchMatches = matchAPI.getMatchesDescDate;
         }
 
         fetchMatches()
