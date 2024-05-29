@@ -12,6 +12,7 @@ build:
     - npm run
     - docker build -t individual-front-end .
 
+CYPRESS_RECORD_KEY: $CYPRESS_RECORD_KEY
 # Caches dependencies using npm lock file as key
 # https://docs.cypress.io/guides/continuous-integration/introduction#Caching
 cache:
