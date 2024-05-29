@@ -12,7 +12,6 @@ build:
     - npm run
     - docker build -t individual-front-end .
 
-CYPRESS_RECORD_KEY: $CYPRESS_RECORD_KEY
 # Caches dependencies using npm lock file as key
 # https://docs.cypress.io/guides/continuous-integration/introduction#Caching
 cache:
@@ -21,6 +20,7 @@ cache:
       - package-lock.json
   paths:
     - .npm/ # Moves npm cache inside project per GitLab restrictions
+
 test:
   # Uses official Cypress docker image for dependencies
   # https://docs.cypress.io/guides/continuous-integration/introduction#Official-Cypress-Docker-Images
@@ -36,7 +36,9 @@ test:
     # Runs tests in parallel and records to Cypress Cloud
     # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
     # https://docs.cypress.io/guides/guides/parallelization
-    - npx cypress run --record --parallel --browser chrome
+    - npx cypress run --record --key $CYPRESS_RECORD_KEY --parallel --browser chrome
+  variables:
+    CYPRESS_RECORD_KEY: $CYPRESS_RECORD_KEY
 
 deploy:
   stage: deploy
