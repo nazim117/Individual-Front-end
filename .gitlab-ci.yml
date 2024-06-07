@@ -3,39 +3,35 @@ stages:
   - test
   - deploy
 
+variables:
+  DOCKER_IMAGE_NAME: individual-front-end
+
 build:
   stage: build
+  image: node:20.10.0
   script:
     - ls
     - pwd
-    - npm i
+    - npm install
     - npm run
-    - docker build -t individual-front-end .
+    - docker build -t $DOCKER_IMAGE_NAME .
 
-# Caches dependencies using npm lock file as key
-# https://docs.cypress.io/guides/continuous-integration/introduction#Caching
 cache:
-  key:
-    files:
-      - package-lock.json
+  key: ${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHA}
   paths:
-    - .npm/ # Moves npm cache inside project per GitLab restrictions
+    - node_modules/
 
 test:
-  # Uses official Cypress docker image for dependencies
-  # https://docs.cypress.io/guides/continuous-integration/introduction#Official-Cypress-Docker-Images
   image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
   stage: test
-  parallel: 2 # Uses 2 parallel instances
+  parallel:
+    matrix:
+      - INSTANCE: 1
+      - INSTANCE: 2
   script:
     - npm ci --cache .npm --prefer-offline
-    # Starts web server for E2E tests - replace with your own server invocation
-    # https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server
     - npm start &
-    - npx wait-on 'http-get://localhost:3000' # Waits for above
-    # Runs tests in parallel and records to Cypress Cloud
-    # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
-    # https://docs.cypress.io/guides/guides/parallelization
+    - npx wait-on 'http-get://localhost:3000'
     - npx cypress run --record --key $CYPRESS_RECORD_KEY --parallel --browser chrome
   variables:
     CYPRESS_RECORD_KEY: $CYPRESS_RECORD_KEY
@@ -43,8 +39,7 @@ test:
 deploy:
   stage: deploy
   script:
-    - ls
-    - pwd
-    - docker stop individual-front-end-staging
-    - docker rm individual-front-end-staging
-    - docker run -d -p 5173:5173 --net=individual_db_staging --env spring_profiles_active=staging --name=individual-front-end-staging individual-front-end
+    - docker pull $DOCKER_IMAGE_NAME
+    - docker stop individual-front-end-staging || true
+    - docker rm individual-front-end-staging || true
+    - docker run -d -p 5173:5173 --net=individual_db_staging --env spring_profiles_active=staging --name=individual-front-end-staging $DOCKER_IMAGE_NAME
