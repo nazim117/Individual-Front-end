@@ -1,17 +1,12 @@
-#Base Node.js stage
-FROM node:20.10.0-alpine as base
+#Build frontend assets
+FROM node:20.10.0-alpine as build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
-
-#Build stage for building frontend assets, if necessary
-FROM base as builder
 COPY . .
 RUN npm run build
 
-#Production stage
-FROM node:20.10.0-alpine as production
-WORKDIR /app
-COPY --from=builder /app/dist ./dist
-EXPOSE 5173
-CMD [ "npm", "run", "dev" ]
+FROM nginx:alpine
+COPY --from=build /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD [ "nginx", "-g", "daemon off;" ]

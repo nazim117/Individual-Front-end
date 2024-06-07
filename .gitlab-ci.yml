@@ -10,8 +10,6 @@ build:
   stage: build
   image: node:20.10.0
   script:
-    - ls
-    - pwd
     - npm install
     - npm run
     - docker build -t $DOCKER_IMAGE_NAME .
@@ -42,4 +40,4 @@ deploy:
     - docker pull $DOCKER_IMAGE_NAME
     - docker stop individual-front-end-staging || true
     - docker rm individual-front-end-staging || true
-    - docker run -d -p 5173:5173 --net=individual_db_staging --env spring_profiles_active=staging --name=individual-front-end-staging $DOCKER_IMAGE_NAME
+    - docker run -d -p 5173:5173 --name=individual-front-end-staging $DOCKER_IMAGE_NAME
