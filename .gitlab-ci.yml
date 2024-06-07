@@ -23,8 +23,10 @@ test:
   image: node:latest
   stage: test
   script:
+    - cd C:\School\S3-Individual\individual-frontend
     - npm ci
-    - npm start &
+    - Start-Job -ScriptBlock { npm start }
+    - Start-Sleep -Seconds 10 # Give time for the server to initialize
     - npm run e2e
 
 deploy:
