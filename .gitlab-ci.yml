@@ -24,7 +24,7 @@ test:
   stage: test
   script:
     - npm install -g wait-on
-    - Start-Process npm -ArgumentList "start" -NoNeWindow -PassThru | Wait-Process -Timeout 30
+    - Start-Process npm -ArgumentList "start" -NoNewWindow -PassThru | Wait-Process -Timeout 30
     - npx wait-on http-get://localhost:3000
     - npx cypress run --record --key $CYPRESS_RECORD_KEY --parallel --browser chrome
   variables:
