@@ -2,7 +2,9 @@ import React from "react"
 import Match from "./Match";
 
 function MatchesList({matches}) {
-
+  if (!matches || matches.length === 0) {
+    return <div>No matches available</div>;
+  }
   return (
     <div className="matches-list">
       {matches.map(match => (

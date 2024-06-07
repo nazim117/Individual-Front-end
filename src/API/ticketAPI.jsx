@@ -62,6 +62,18 @@ const ticketAPI = {
       console.error("Error getting bought tickets: ", error);
       throw error;
     }),
+
+    getTicketSalesOverview: () => axios
+      .get(`${ticketUrl}/ticket-sales-overview`,{
+        headers:{
+            Authorization: `Bearer ${TokenManager.getAccessTokenFromLocalStorage()}`,
+        }
+    }).then(res => {
+      return res.data;
+    }).catch(error => {
+      console.error("Error getting ticket sales overview: ", error);
+      throw error;
+    })
 }
 
 export default ticketAPI;

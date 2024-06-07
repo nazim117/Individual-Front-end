@@ -5,3 +5,7 @@ RUN npm install
 RUN npm run
 EXPOSE 5173
 CMD ["npm", "run", "dev"]
+
+FROM cypress/base
+RUN npm install
+RUN npx cypress run

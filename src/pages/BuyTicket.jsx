@@ -17,7 +17,13 @@ function BuyTicket(){
     const refreshTicket = () => {
         ticketAPI.getTicketsByMatchId(matchId)
             .then((data) =>{
+                console.log("ticket data: ", data);
                 setTickets(data);
+                if(data.length > 0){
+                    setRow(data[0].rowNum);
+                    setSeat(data[0].seatNumber);
+                    handlePrice(data[0].rowNum, data[0].seatNumber);
+                }
             })
             .catch((error)=>
             {
@@ -26,13 +32,15 @@ function BuyTicket(){
     }
 
     const handleRow = (e) => {
-        const selectedRow = e.target.value;
+        const selectedRow = parseInt(e.target.value, 10);
         setRow(selectedRow);
-        handlePrice(selectedRow, seat);
+        const firstAvailableSeat = tickets.find(ticket => ticket.rowNum === selectedRow)?.seatNumber;
+        setSeat(firstAvailableSeat);
+        handlePrice(selectedRow, firstAvailableSeat);
     }
 
     const handleSeat = (e) => {
-        const selectedSeat = e.target.value;
+        const selectedSeat = parseInt(e.target.value, 10);
         setSeat(selectedSeat);
         handlePrice(row, selectedSeat);
     }
@@ -72,15 +80,22 @@ function BuyTicket(){
         handlePrice(row, seat);
     }, [matchId]);
 
+    useEffect(() => {
+        if(row !== null){
+            const firstAvailableSeat = tickets.find(ticket => ticket.rowNum === row)?.seatNumber;
+            setSeat(firstAvailableSeat);
+            handlePrice(row, firstAvailableSeat);
+        }
+    }, [row]);
     const rows = [...new Set(tickets.map(ticket => ticket.rowNum))];
-    const seats = [...new Set(tickets.map(ticket => ticket.seatNumber))];
+    const seats = [...new Set(tickets.filter(ticket => ticket.rowNum === row).map(ticket => ticket.seatNumber))];
 
     return(
         <div className="match-container">
             <h2>Buy Ticket</h2>
             <div className="input-conainer">
                 <label htmlFor="row-number">Row Number</label>
-                <select name="row-number" id="row-number" value={row} onChange={handleRow}>
+                <select name="row-number" id="row-number" value={row || ''} onChange={handleRow}>
                     {rows.map((row, index) => {
                         return(
                             <option key={index} value={row}>
@@ -92,7 +107,7 @@ function BuyTicket(){
             </div>
             <div className="input-container">
                 <label htmlFor="seat-number">Seat Number</label>
-                <select name="seat-number" id="seat-number" value={seat} onChange={handleSeat}>
+                <select name="seat-number" id="seat-number" value={seat || ''} onChange={handleSeat}>
                     {seats.map((seat, index) => {
                         return(
                             <option key={index} value={seat}>

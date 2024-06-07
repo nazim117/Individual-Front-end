@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
@@ -13,7 +15,9 @@
     "@stomp/stompjs": "^7.0.0",
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.3",
     "jwt-decode": "^4.0.0",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",

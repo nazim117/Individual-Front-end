@@ -9,7 +9,6 @@ function UserProfile(){
     const [fname, setFName] = useState("");
     const [lname, setLName] = useState("");
     const [email, setEmail] = useState("");
-    const [picture, setPicture] = useState("");
     const [password, setPassword] = useState("");
     const [boughtTickets, setBoughtTickets] = useState([]);
     const navigate = useNavigate();
@@ -30,11 +29,10 @@ function UserProfile(){
       }
 
       const setUserDetails = (data) => {
-        const { fname, lname, email, picture, password} = data;
+        const { fname, lname, email, password} = data;
             setFName(fname);
             setLName(lname);
             setEmail(email);
-            setPicture(picture);
             setPassword(password);
       }
 
@@ -61,10 +59,6 @@ function UserProfile(){
         setEmail(e.target.value);
     }
 
-    const handlePictureChange = (e) => {
-        setPicture(e.target.value);
-    }
-
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     }
@@ -75,7 +69,6 @@ function UserProfile(){
             fname,
             lname,
             email,
-            picture,
             password,
         })
 
@@ -100,10 +93,6 @@ function UserProfile(){
                 <div className="box email">
                     <label htmlFor="email">Email</label>
                     <input type="email" id="email" value={email || ''} onChange={handleEmailChange} required autoComplete="username"/>
-                </div>
-                <div className="box picture">
-                    <label htmlFor="picture">Picture</label>
-                        <input type="text" id="picture" value={picture || ''} onChange={handlePictureChange} required autoComplete="picture"/>
                 </div>
                 <div className="box password">
                     <input type="hidden" id="password" value={password || ''} onChange={handlePasswordChange} required autoComplete="current-password"/>

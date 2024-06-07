@@ -139,10 +139,6 @@ function UsersPage(){
                     <label htmlFor="email">Email</label>
                     <input type="email" id="email" name="email" value={email} onChange={handleEmailChange} required autoComplete="email"/>
                 </div>
-                <div className="box picture">
-                    <label htmlFor="picture">Picture</label>
-                        <input type="text" id="picture" name="picture" value={picture} onChange={handlePictureChange} autoComplete="picture"/>
-                </div>
                 <div className="box role">
                     <label htmlFor="picture">Role</label>
                     <select name="user-role" id="user-role" value={role} onChange={handleRoleChange}>

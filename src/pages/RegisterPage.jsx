@@ -8,7 +8,6 @@ function RegisterPage() {
     const [fName, setFName] = useState("");
     const [lName, setLName] = useState("");
     const [email, setEmail] = useState("");
-    const [picture, setPicture] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -22,19 +21,12 @@ function RegisterPage() {
     const handleFNameChange = (e) => {
         setFName(e.target.value);
     }
-
     const handleLNameChange = (e) => {
         setLName(e.target.value);
     }
-
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
     }
-
-    const handlePictureChange = (e) => {
-        setPicture(e.target.value);
-    }
-
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     }
@@ -59,7 +51,6 @@ function RegisterPage() {
             email,
             fname: fName,
             lname: lName,
-            picture,
             password,
         });
 
@@ -92,10 +83,6 @@ function RegisterPage() {
                 <div className="box email">
                     <label htmlFor="email">Email</label>
                     <input type="email" id="email" name="email" value={email} onChange={handleEmailChange} required autoComplete="email"/>
-                </div>
-                <div className="box picture">
-                    <label htmlFor="picture">Picture</label>
-                        <input type="text" id="picture" name="picture" value={picture} onChange={handlePictureChange} autoComplete="picture"/>
                 </div>
                 <div className="box password">
                     <label htmlFor="password">Password</label>

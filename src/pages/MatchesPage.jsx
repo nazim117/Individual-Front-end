@@ -6,7 +6,7 @@ function MatchesPage(){
     const [matches, setMatches] = useState([]);
     const [sortOrder, setSortOrder] = useState("DESC");
 
-    const refreshMatches = (order = 'DESC') => {
+    const refreshMatches = (order) => {
         let fetchMatches = matchAPI.getMatchesDescDate;
         
         if(order === 'MOST-SOLD-TICKETS'){
@@ -23,10 +23,13 @@ function MatchesPage(){
     }
 
     useEffect(() => {
+        console.log("Fetching matches with order:", sortOrder);
         refreshMatches(sortOrder);
     }, [sortOrder]);
 
+
     const handleSortChange = (e) => {
+        e.preventDefault();
         const selectedOrder = e.target.value;
         setSortOrder(selectedOrder);
     }

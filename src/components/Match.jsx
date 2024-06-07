@@ -10,34 +10,36 @@ function Match({match}){
     const matchPagePath = `/matches/${match.id}`;
 
     return (
-        <Link to={matchPagePath} style={{textDecoration: 'none', color: 'red'}}>
+        <Link to={matchPagePath} className='match-link'>
             <div className="match-item" key={match.id}>
                 <span className="match-details">
                     <div className="match-info">
-                        <div>{matchDateStr}</div>
-                        <div>{matchTime}</div>
-                        <div>{match.venueName}</div>
+                        <div className='match-date'>{matchDateStr}</div>
+                        <div className='match-time'>{matchTime}</div>
+                        <div className='match-venue'>{match.venueName}</div>
                     </div>
-                    <hr></hr>
-                    <span className="home-team">
-                        <img 
-                            className="team-logo" 
-                            src={`${match.homeTeamLogo}`}
-                            alt={`${match.homeTeamName}`}
-                        />
-                    <div>{match.homeTeamName}</div>
-                    </span>
-
-                    {today >= matchDate ? ` ${match.goalsHome} - ${match.goalsAway} ` : " VS "}
-                    
-                    <span className="away-team">
-                        <div>{match.awayTeamName}</div>
-                        <img 
-                            className="team-logo" 
-                            src={`${match.awayTeamLogo}`}
-                            alt={`${match.awayTeamName}`}
-                        />
-                    </span>
+                    <hr/>
+                    <div className='head-to-head'>
+                        <span className="home-team">
+                            <div className='team-name'>{match.homeTeamName}</div>
+                            <img 
+                                className="team-logo" 
+                                src={`${match.homeTeamLogo}`}
+                                alt={`${match.homeTeamName}`}
+                            />
+                        </span>
+                        <div className='match-score'>
+                            {today >= matchDate ? ` ${match.goalsHome} - ${match.goalsAway} ` : " VS "}
+                        </div>
+                        <span className="away-team">
+                            <div className='team-name'>{match.awayTeamName}</div>
+                            <img 
+                                className="team-logo" 
+                                src={`${match.awayTeamLogo}`}
+                                alt={`${match.awayTeamName}`}
+                            />
+                        </span>
+                    </div>
                 </span>
             </div>
         </Link>

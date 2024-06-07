@@ -1,17 +1,8 @@
 import TokenManager from "../API/TokenManager";
 import Logout from "./Logout"
-import { useAuth } from "./AuthContext";
 
 function NavBar(){
-    const { logout} = useAuth();
     const claims = TokenManager.getClaimsFromLocalStorage();
-
-    const handleLogout = () => {
-        TokenManager.clear();
-        if(confirm("Are you sure you want to logout?")){
-            logout();
-        }
-      }
 
     return(
         <nav className="navbar navbar-expand-lg custom-style">

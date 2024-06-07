@@ -19,6 +19,7 @@ function SingleMatchPage(){
         matchAPI.getMatch(matchId)
             .then((data) =>{
                 setMatch(data);
+                console.log('Match',match);
             })
             .catch((error)=>
             {
@@ -68,6 +69,16 @@ function SingleMatchPage(){
                 ) : (
                     <span className="ticket-unavailable">Tickets are not longer available</span>
                 )}
+                </div>
+                <div className='match-tickets'>
+                    <div className='available-tickets'>
+                        Available tickets: {match.availableTicketsCount}
+                    </div>
+                    {match.availableTicketsCount !== 10 && (
+                        <div className='sold-tickets'>
+                            Sold tickets: {match.soldTicketCount}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
