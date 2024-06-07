@@ -20,15 +20,12 @@ cache:
     - node_modules/
 
 test:
-  image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
+  image: node:latest
   stage: test
   script:
-    - npm install -g wait-on
-    - Start-Process npm -ArgumentList "start" -NoNewWindow -PassThru | Wait-Process -Timeout 30
-    - npx wait-on http-get://localhost:3000
-    - npx cypress run --record --key $CYPRESS_RECORD_KEY --parallel --browser chrome
-  variables:
-    CYPRESS_RECORD_KEY: $CYPRESS_RECORD_KEY
+    - npm ci
+    - npm start &
+    - npm run e2e
 
 deploy:
   stage: deploy
