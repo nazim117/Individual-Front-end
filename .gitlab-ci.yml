@@ -19,6 +19,6 @@ deploy:
   stage: deploy
   script:
     - docker pull individual-front-end
-    - docker stop individual-front-end-staging || true
-    - docker rm individual-front-end-staging || true
+    - docker stop individual-front-end-staging
+    - docker rm individual-front-end-staging
     - docker run -d -p 5173:5173 --name=individual-front-end-staging individual-front-end
