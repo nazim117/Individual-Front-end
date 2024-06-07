@@ -27,7 +27,7 @@ test:
     - npm ci
     - Start-Job -ScriptBlock { npm start }
     - Start-Sleep -Seconds 10 # Give time for the server to initialize
-    - npm run e2e
+    - npm run cypress:run
 
 deploy:
   stage: deploy
