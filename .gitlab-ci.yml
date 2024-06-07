@@ -23,8 +23,9 @@ test:
   image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
   stage: test
   script:
-    - Start-Process npm -ArgumentList "start"
-    - npx wait-on 'http-get://localhost:5173'
+    - npm install -g wait-on
+    - Start-Process npm -ArgumentList "start" -NoNeWindow -PassThru | Wait-Process -Timeout 30
+    - npx wait-on http-get://localhost:3000
     - npx cypress run --record --key $CYPRESS_RECORD_KEY --parallel --browser chrome
   variables:
     CYPRESS_RECORD_KEY: $CYPRESS_RECORD_KEY
