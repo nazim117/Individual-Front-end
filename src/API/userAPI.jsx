@@ -1,6 +1,6 @@
 import axios from "axios";
 import TokenManager from "./TokenManager";
-import baseUrl from "../utils/baseUrl";
+import baseUrl from "./baseUrl";
 
 const userUrl = baseUrl.users;
 
