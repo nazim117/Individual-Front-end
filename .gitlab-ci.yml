@@ -20,4 +20,4 @@ deploy:
   script:
     - docker stop individual-front-end-staging
     - docker rm individual-front-end-staging
-    - docker run -d -p 5173:5173 --name=individual-front-end-staging individual-front-end
+    - docker run -d -p 80:80 --net=s3-individual_match-pass-network --name=individual-front-end-staging individual-front-end
